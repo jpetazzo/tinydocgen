@@ -1,0 +1,28 @@
+provider: "Tiny Shell Script LLC"
+customer: "World Company Inc"
+provider_full: |
+        Tiny Shell Script, LLC
+        2425 SE 45TH ST
+        Topeka KS 66609
+        USA
+        jerome.petazzoni@gmail.com
+customer_full: |
+        World Company, Inc
+        1 Wall Street, Suite #42000
+        New York City NY 12345
+        USA
+        jean.doe@world.co
+course_short_description: |
+        Containers, Docker, and Kubernetes
+        for the financial industry
+course_language: English
+course_address: |
+        World Company, Inc
+        1 Wall Street, Suite #42000
+        New York City NY 12345
+        USA
+course_date: Tuesday to Thursday, December 24th-26th, 2042; from 9am to 5:30pm
+assistants: 0
+students: 30
+paper_size: A4
+

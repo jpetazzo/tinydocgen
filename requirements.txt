@@ -1,0 +1,4 @@
+j2cli
+WeasyPrint
+markdown2
+PyYAML

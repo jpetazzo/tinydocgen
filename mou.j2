@@ -1,0 +1,171 @@
+{#
+How to build this:
+
+$ j2 mou.j2 blah.yaml | markdown2 | weasyprint - blah.pdf
+
+(Or use "make" in this directory; it'll build a PDF for each YAML.)
+
+Required variables:
+- provider
+- customer
+- provider_full
+- customer_full
+- course_short_description
+- course_language
+- course_address
+- course_date
+- assistants (int)
+- students (int)
+- paper_size
+
+Annexes:
+- course outline
+- price and payment terms
+#}
+
+<style>
+@page {
+ size: {{ paper_size }}; 
+ @bottom-center {
+   content: "page " counter(page) " of " counter(pages);
+ }
+}
+</style>
+
+# Memorandom Of Understanding
+
+
+## Purpose
+
+This defines the conditions in which {{ provider }} will
+provide training services to {{ customer }}.
+
+Here is the full address and contact information of {{ provider }}:
+
+*{{ provider_full | replace("\n", "  \n") | trim }}*
+
+Here is the full address and contact information of {{ customer }}:
+
+*{{ customer_full | replace("\n", "  \n") | trim }}*
+
+{{ provider }} will provide the following course:
+
+*{{ course_short_description | trim }}*
+
+A longer description is attached as a separate document.
+
+The course will be delivered in {{ course_language }}.
+The course materials will be in English.
+
+The course can have up to {{ students }} students.
+
+The course will take place at the following address:
+
+*{{ course_address | replace("\n", "  \n") | trim }}*
+
+The course will take place at the following time:
+
+*{{ course_date }}*
+
+<div style="page-break-after: always;"></div>
+
+## Responsibilities of {{ provider }}
+
+{{ provider }} will provide an instructor
+{%- if assistants==1 %} and an assistant {% endif %}
+{%- if assistants>=2 %} and {{ assistants }} assistants {% endif %}
+to deliver the course.
+
+Course materials (slides) will be hosted on a public website
+available during the course and afterwards.
+
+{{ provider }} will book and cover costs for travel and lodging
+for the instructor
+{%- if assistants==1 %} and assistant {%- endif -%}
+{%- if assistants>=2 %} and assistants {%- endif -%}.
+
+For the duration of the course, each student will be given
+access to a training environment hosted on cloud virtual machines.
+
+<div style="page-break-after: always;"></div>
+
+## Responsibilities of {{ customer }}
+
+{{ customer }} will provide the venue where the course will take place.
+
+The room should have at least one video projector or screen, to
+be used by the instructor to present the course materials and demos.
+The projector or screen must offer direct HDMI connectivity.
+Stay away from AirPlay, Chromecast, ClickShare, and similar systems
+that require a specific operating system or driver installation.
+
+The screen should be big enough to be readable by all attendees
+in the room. As an example, here is a typical slide of content:
+
+- https://kadm-2019-06.container.training/#28
+
+The venue should be set up as a classroom: students should be able
+to sit with their computer on a table, facing the screen.
+Avoid meeting rooms arranged with a long table ("board room" style)
+or a U-shaped table, as these do not offer good conditions for
+a course.
+
+The instructor will be standing while presenting. The room should
+have a lectern, standing desk, or something similar allowing the
+instructor to use their computer while standing.
+
+Each student will use their own computer ({{ provider }} will not
+provide computers for the students). There should be enough
+power outlets for the students' computers since they will use
+them during the entire training.
+
+The venue should offer wireless or wired connectivity. The network
+should allow unrestricted access to https://container.training/
+and to the virtual machines used for the training. If the network
+has specific filtering rules, {{ customer }} should discuss
+with {{ provider }} to make sure that it will be possible
+to access the training environments during the course.
+
+<div style="page-break-after: always;"></div>
+
+## Price and payment terms
+
+The price of the course and the payment terms are specified
+in the attached quote.
+
+The price includes:
+
+- payment for the instructor
+  {%- if assistants==1 %} and assistant {% endif %}
+  {%- if assistants>=2 %} and assistants {% endif %}
+- all food, travel, and lodging fees for the instructor
+  {%- if assistants==1 %} and assistant {% endif %}
+  {%- if assistants>=2 %} and assistants {% endif %}
+- cloud virtual machines for the duration of the course
+
+The price does not include:
+
+- the course venue
+- all food, travel, and lodging fees for the students
+- computers or other resources for the students
+
+## Signatures
+
+<table style="width: 90%; border-spacing: 3em; ">
+<tr>
+<td>For {{ provider }}</td>
+<td>For {{ customer }}</td>
+</tr>
+<tr>
+<td style="border-bottom: thin solid black;">Name:</td>
+<td style="border-bottom: thin solid black;">Name:</td>
+</tr>
+<tr>
+<td style="border-bottom: thin solid black;">Date:</td>
+<td style="border-bottom: thin solid black;">Date:</td>
+</tr>
+<tr>
+<td style="border-bottom: thin solid black;">Signature:</td>
+<td style="border-bottom: thin solid black;">Signature:</td>
+</tr>
+</table>

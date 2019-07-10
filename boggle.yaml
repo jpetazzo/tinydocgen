@@ -1,0 +1,28 @@
+provider: "Tiny Shell Script LLC"
+customer: "Boggle People GmbH"
+provider_full: |
+        Tiny Shell Script, LLC
+        2425 SE 45TH ST
+        Topeka KS 66609
+        USA
+        jerome.petazzoni@gmail.com
+customer_full: |
+        Boggle People GmbH
+        11 Billion Star Trek Lane
+        Timbuktu 9
+        Mali
+        pooptypants@scaredy.cat
+course_short_description: |
+        Containers, Docker, and Kubernetes
+        for the people industry
+course_language: German
+course_address: |
+        Boggle People GmbH
+        11 Billion Star Trek Lane
+        Timbuktu 9
+        Mali
+course_date: Tuesday to Thursday, December 24th-26th, 2042; from 9am to 5:30pm
+assistants: 2
+students: 30
+paper_size: A4
+
