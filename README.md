@@ -15,4 +15,20 @@ This is how I use it:
 5. After file my-customer-name.pdf is generated, review it, print/send it as necessary
 6. PROFIT!
 
-If you want to use it, have a look at mou.j2.
+## How it works
+
+The file [mou.j2](mou.j2) is basically Markdown with
+Jinja2 tags in it. We use j2cli to render that template
+to "pure" Markdown. Then we use markdown2 to render
+that markdown to HTML. Finally we use weasyprint to
+render that HTML to PDF. Voilà!
+
+## Using it for your own stuff
+
+It's using a few Python dependencies. I recommend
+that you have Python and pip installed, then install
+the dependencies with `pip install --user -r requirements.txt`.
+If you want to manage the dependencies in a different
+way or use a container or whatever, you absolutely can!
+
+You will probably want to customize mou.j2 to suit your needs.
