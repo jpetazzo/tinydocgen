@@ -12,11 +12,13 @@ Required variables:
 - customer_full
 - course_short_description
 - course_language
-- course_address
+- course_address (not used if course_online is "true")
 - course_date
 - assistants (int)
 - students (int)
 - paper_size
+- course_online (bool, defaults to "false")
+
 
 Annexes:
 - course outline
@@ -59,9 +61,18 @@ The course materials will be in English.
 
 The course can have up to {{ students }} students.
 
+{% if course_online %}
+
+The course will be delivered online, through a live
+video streaming platform.
+
+{% else %}
+
 The course will take place at the following address:
 
 *{{ course_address | replace("\n", "  \n") | trim }}*
+
+{% endif %}
 
 The course will take place at the following time:
 
@@ -79,10 +90,21 @@ to deliver the course.
 Course materials (slides) will be hosted on a public website
 available during the course and afterwards.
 
+{% if course_online %}
+
+{{ provider }} will set up and cover costs for the live video
+streaming platform used to deliver the course. (The technical
+requirements to access the video stream are detailed in the
+next section.)
+
+{% else %}
+
 {{ provider }} will book and cover costs for travel and lodging
 for the instructor
 {%- if assistants==1 %} and assistant {%- endif -%}
 {%- if assistants>=2 %} and assistants {%- endif -%}.
+
+{% endif %}
 
 For the duration of the course, each student will be given
 access to a training environment hosted on cloud virtual machines.
@@ -90,6 +112,36 @@ access to a training environment hosted on cloud virtual machines.
 <div style="page-break-after: always;"></div>
 
 ## Responsibilities of {{ customer }}
+
+{% if course_online %}
+
+{{ customer }} will make sure that each student has a computer
+and internet connection.
+
+During the online course, the students will need to access:
+
+- the live video stream,
+- one or multiple terminals with SSH connections to remote machines,
+- a chat room for Q&A,
+- a web browser to access course materials and deployed apps.
+
+It is recommended to have either:
+
+- a computer with a high resolution large screen (27" or above, 1440p or above),
+- or a computer with dual monitors,
+- or a computer + a tablet (the tablet being used to display the video stream).
+
+The video stream is available through HLS and RTMP.
+It can be viewed on a computer (Linux, Mac, Windows) using
+a web browser (without installing additional software or plugins).
+On some tablets, the HLS video stream may not function correctly.
+In that case, installing the free app VLC (VideoLAN Client) will
+allow to view the stream.
+
+The video stream requires at least 500 kilobits/s, and optimal
+quality is at 4 megabits/s.
+
+{% else %}
 
 {{ customer }} will provide the venue where the course will take place.
 
@@ -126,6 +178,8 @@ has specific filtering rules, {{ customer }} should discuss
 with {{ provider }} to make sure that it will be possible
 to access the training environments during the course.
 
+{% endif %}
+
 <div style="page-break-after: always;"></div>
 
 ## Price and payment terms
@@ -138,14 +192,15 @@ The price includes:
 - payment for the instructor
   {%- if assistants==1 %} and assistant {% endif %}
   {%- if assistants>=2 %} and assistants {% endif %}
-- all food, travel, and lodging fees for the instructor
+- (for in person training only) all food, travel, and lodging fees for the instructor
   {%- if assistants==1 %} and assistant {% endif %}
   {%- if assistants>=2 %} and assistants {% endif %}
+- (for remote training only) live video streaming platform
 - cloud virtual machines for the duration of the course
 
 The price does not include:
 
-- the course venue
+- (for in person training only) the course venue
 - all food, travel, and lodging fees for the students
 - computers or other resources for the students
 

@@ -21,6 +21,7 @@ course_address: |
         1 Wall Street, Suite #42000
         New York City NY 12345
         USA
+course_online: false
 course_date: Tuesday to Thursday, December 24th-26th, 2042; from 9am to 5:30pm
 assistants: 0
 students: 30
